@@ -1,7 +1,27 @@
+// src/components/AddSongModal.jsx
+
 import React from 'react';
 import Modal from './Modal';
 
-const AddSongModal = ({ show, onClose, newSongName, setNewSongName, newSongKey, setNewSongKey, newSongSheetMusicLink, setNewSongSheetMusicLink, newSongVideoLink, setNewSongVideoLink, onAddSong }) => {
+const AddSongModal = ({
+    show,
+    onClose,
+    newSongName,
+    setNewSongName,
+    newSongKey,
+    setNewSongKey,
+    newSongSheetMusicLink,
+    setNewSongSheetMusicLink,
+    newSongVideoLink,
+    setNewSongVideoLink,
+    addSong // <-- CORREGIDO: ahora la prop se llama 'addSong' para coincidir con App.jsx
+}) => {
+
+    const handleAddSongClick = () => {
+        addSong(); // Llama a la función del padre
+        onClose(); // Cierra el modal después de la acción
+    };
+
     return (
         <Modal show={show} onClose={onClose} title="Añadir Nueva Canción">
             <div className="space-y-4">
@@ -49,12 +69,20 @@ const AddSongModal = ({ show, onClose, newSongName, setNewSongName, newSongKey, 
                         placeholder="https://youtube.com/watch?v=..."
                     />
                 </div>
-                <button
-                    onClick={onAddSong}
-                    className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out"
-                >
-                    Añadir Canción
-                </button>
+                <div className="flex justify-end space-x-2 mt-4">
+                    <button
+                        onClick={handleAddSongClick}
+                        className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out"
+                    >
+                        Añadir Canción
+                    </button>
+                    <button
+                        onClick={onClose}
+                        className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition duration-150 ease-in-out"
+                    >
+                        Cancelar
+                    </button>
+                </div>
             </div>
         </Modal>
     );

@@ -1,5 +1,29 @@
-{
-  "projects": {
-    "default": "app-canciones-de-alabanza"
-  }
-}
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth'; // Para autenticación
+import { getFirestore } from 'firebase/firestore'; // Para la base de datos Firestore
+import { getStorage } from 'firebase/storage'; // Para almacenamiento de archivos
+
+// Tu configuración de Firebase
+// *** IMPORTANTE: REEMPLAZA ESTOS VALORES CON TUS CREDENCIALES REALES DE FIREBASE ***
+// Puedes encontrar esto en la consola de Firebase -> Configuración del proyecto -> Tus aplicaciones
+const firebaseConfig = {
+  apiKey: "AIzaSyAGHUPrAc0WORIXktKF7gmdgZD2_CRr2Oc",
+  authDomain: "app-canciones-de-alabanza.firebaseapp.com",
+  projectId: "app-canciones-de-alabanza",
+  storageBucket: "app-canciones-de-alabanza.firebasestorage.app",
+  messagingSenderId: "141052299849",
+  appId: "1:141052299849:web:0e3dbb01cd0eabe961cd98",
+  measurementId: "G-R72S3V5EG6"
+};
+
+// Inicializa la aplicación de Firebase
+const app = initializeApp(firebaseConfig);
+
+// Obtén las instancias de los servicios de Firebase
+// Estas son las que exportarás para usar en otros componentes
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+// Si necesitas exportar la instancia de la aplicación de Firebase para algún propósito específico:
+// export { app };
